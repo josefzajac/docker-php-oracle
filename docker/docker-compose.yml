@@ -1,0 +1,20 @@
+version: "2"
+services:
+  apache_app2:
+    image: "thomasbisignani/docker-apache-php-oracle"
+    ports:
+      - "8081:80"
+    volumes:
+      - ../:/var/www
+  oracle_node2:
+    image: "sath89/oracle-xe-11g"
+    ports:
+      - "8080:8080"
+      - "1521:1521"
+    environment:
+#      - "ORACLE_ALLOW_REMOTE=true"
+      - "processes=1000"
+      - "sessions=1105"
+      - "transactions=1215"
+    volumes:
+      - ./oracle-tmp:/u01/app/oracle/oradata:rw
